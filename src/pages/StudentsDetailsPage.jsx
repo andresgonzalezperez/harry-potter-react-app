@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function StudentsDetailsPage() {
-  const [student, setStudent] = useState([]);
+  const [student, setStudent] = useState({});
   const { studentId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -16,11 +17,21 @@ function StudentsDetailsPage() {
       .catch((err) => console.log(err));
   }, [studentId]);
 
+  // Delete student
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:5005/students/${studentId}`);
+      navigate("/students"); // Go back to the list
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="detail-container">
       <section className="student-detail-container">
         <img src={student.image} alt={student.name} />
-         <h1>{student.name}</h1>
+        <h1>{student.name}</h1>
         <div>
           <p>
             <strong>Age:</strong> {student.age}
@@ -40,12 +51,31 @@ function StudentsDetailsPage() {
             ))}
         </ul>
 
+        <h2>Personal Skills</h2>
+        <ul className="personal-skills-list">
+          {student.personalSkills?.map((skill, index) => (
+            <li key={index}>
+              <strong>{skill}</strong>
+            </li>
+          ))}
+        </ul>
+
         <h2>Comments</h2>
         <p className="student-comments">{student.comments}</p>
 
         <Link to="/" className="btn-back-home">
           Back
         </Link>
+
+        <p
+          className="btn-edit-student"
+          onClick={() => navigate(`/students/${studentId}/edit`)}>
+          Edit Student
+        </p>
+
+        <p className="btn-delete-student" onClick={handleDelete}>
+          Delete Student
+        </p>
       </section>
     </div>
   );

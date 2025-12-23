@@ -11,14 +11,16 @@ function Navbar() {
           </Link>
           <div className="nav-divider"></div>
           <Link to="/students" className="nav-item">
-            Manage <br />
-            Students
+            Add <br />
+            Student
           </Link>
         </section>
 
         <section className="nav-logo">
           <article className="logo-inner">
-            <img src={hogwartsCrest} alt="hogwartsCrest" />
+            <Link to="/" className="nav-item">
+              <img src={hogwartsCrest} alt="hogwartsCrest" />
+            </Link>
           </article>
         </section>
 

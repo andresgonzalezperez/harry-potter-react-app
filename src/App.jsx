@@ -4,10 +4,11 @@ import Navbar from "./components/Navbar";
 import Search from "./components/Search";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import ManageStudentPage from "./pages/ManageStudentPage";
+import AddStudentPage from "./pages/AddStudentPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import NotFoundPage from "./pages/NotfoundPage";
 import StudentsDetailsPage from "./pages/StudentsDetailsPage";
+import EditStudentPage from "./pages/EditStudentPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -48,9 +49,10 @@ function App() {
               />
             }
           />
-          <Route path="manage-student" element={<ManageStudentPage />} />
+          <Route path="add-student" element={<AddStudentPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="students/:studentId" element={<StudentsDetailsPage />} />
+          <Route path="/students/:studentId/edit" element={<EditStudentPage />} />
         </Routes>
       </main>
     </>
