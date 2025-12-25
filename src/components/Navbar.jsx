@@ -10,7 +10,7 @@ function Navbar() {
             Home
           </Link>
           <div className="nav-divider"></div>
-          <Link to="/students" className="nav-item">
+          <Link to="/students/add" className="nav-item">
             Add <br />
             Student
           </Link>

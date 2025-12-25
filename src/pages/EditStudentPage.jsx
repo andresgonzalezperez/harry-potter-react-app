@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function StudentsEditPage() {
@@ -64,7 +64,7 @@ function StudentsEditPage() {
       <section className="student-detail-container">
         <h1>Edit Student</h1>
 
-        <form onSubmit={handleSubmit} className="edit-form">
+        <form onSubmit={handleSubmit} className="form">
 
           <label>Name:</label>
           <input

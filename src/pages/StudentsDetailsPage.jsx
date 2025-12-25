@@ -21,7 +21,7 @@ function StudentsDetailsPage() {
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:5005/students/${studentId}`);
-      navigate("/students"); // Go back to the list
+      navigate("/"); // Go back to the list
     } catch (err) {
       console.log(err);
     }

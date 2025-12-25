@@ -53,6 +53,8 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
           <Route path="students/:studentId" element={<StudentsDetailsPage />} />
           <Route path="/students/:studentId/edit" element={<EditStudentPage />} />
+          <Route path="/students/add" element={<AddStudentPage/>} />
+
         </Routes>
       </main>
     </>
