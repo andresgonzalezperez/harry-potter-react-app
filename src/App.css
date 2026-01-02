@@ -18,8 +18,20 @@ body {
   background-color: #1a1a1a;
   cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAE/klEQVR4AbyXDTTVZxzHv/eaSsrurZArFUuUjs52KsspaqZ1dtLOltLiMNaal15QKnrRal5KqdTI5LWrMb2sNzullM3rmJeDhUjE9TIc5N4wL/s9HNsYuhzc8/08z//5/Z/n9/ue+3+e+8IF4Ec8IDjEhIvL4XCMdLXVjKmyMzHh4nZ3d38tlrR1qanwPaj6UmJCxR5BYkl5rb+WhmDyJNm3rlJ1OWLCxAywYq6JGUWlxquWLKbBKWLC1GegpbXtrx3lorpuXe25DlT9Y2JC1GeAFXuYW1hxeclCVY7CNLkQCigR467/GmDFXG7FZVaabdBTpkEwMe5Hc6CBJvHrth1Z+WWg/bCBDNgS46qBBlix2IzcUuGC+coQKPHOUECbGDcNZoAVcxTeTKrevnWNHJfLYUdzMguOB0MZqH8lbt0Zl5gH843671Lh48S4aCgDrNj1lMziGP7bcli0QLCPAh8QY67hDLBiuy5HP6lfuUTA5kVTYDcxpmKJh0tYI2nt8IyMzYbp+mWztDRUztFkE2LMNJgBd8puQSgSTM3qAh5W6qrBbpshZyZ/WiQFFxFjosEMXKPMrEAJl8stoWuzghd1naHXE/Eo+SkWzp89nWL3iAAilPAlzAg1YsQazEA+ZTlEOOmvWK5x/1r0h9HBQTLOjodgvM4Mn5vZ4Dufk+rh/hdsnb/68gstDXUnmhtFlE+Tl6+jPoZQJaTSYAb6FgYnpqY52e3d30E9RFXVqK6pQVFJCYqKi1FK/ePkZGioq+PnH3+AvY015ghUZppv3mRKCQ4QUmk4AyzBuedlZdnp6ek46n0K3uf9UJgTj7zMOHicvwBNzYXwOX4Mc+fMgcN2G3zr5gpmlhZqElLpTQZYEteMvHzJxvUfwcnOFs2vO9EsboPx2rU46rIXYokEgWER2H3QDRwuB8JL/mzNLNZIgzQGHnZ0dOjGJSSUq6mq4mlpAwTzdOF52A1Zubn4xMIS/iGhqKLH097ejhl8PnS0tZZScXPijZLGAEtSIhZLVju6HRaZrDPGCXqrf01Ng/XOPdDR0urZAzGhwdDV0QF7BfqeljUyWC2k6/3EsJLWAEtSTseyda6yIsIirmDfEXc429vCz9sTgtmz2f1/4PN4tCEFbCxhzXCMxAC6urqKGxqbILxxEwZ6y2GxmW144FVLC+7HP4ZfYBAS6GSwggXPnrEujjXDMSIDlOhO7JME1NY34L3Fi3D37j240+mwdXRGtagKFltMYaivT9OATSbs9wzYB9aWnsAQzUgNxLysqu5kuQqfl+JiaBgUFabj9IlvYGWxrWcDsnv0XwOJab9BT8/gHSUlQRTFet8quhiokRqooQR/EAWp2Tmw3PQZrK0soaKiQqFeseLZOTmYLi8PFzsbrDXawFFQ4IXT3WXE/zRSAyzB+9R8z+VwMWXKZGIKDXv1slKEY14nIaqowIE9uyBQngX+1ElYY2QyVVZ2EvuOke+d+W87GgMSWu4nqq0N8A0KgafPGTx4FI+zAZdgZecAnrwcVhsYQEZGBo2NjeByusHjzcS8+ZrzaJ0h0U+jMcASsH1g39zSYhh1+0600xH39GDhVcl6w1VQnDEDqSkpSKbTkJyUhNYuGTQ1NqC8rLiSFv5C9NNoDfQlYQm30mAFPft1ETduZQVFxXR7XQzAQQ+vzrMh4X8KIwNf3P7pyu/t7W2f0rwWop/+BgAA//8T6SAJAAAABklEQVQDAEH3oPuhKaYeAAAAAElFTkSuQmCC"),
     auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
 .students-list {
   font-family: "MedievalSharp", cursive;
   display: grid;
@@ -50,7 +62,6 @@ body {
 
 .student-card {
   background: #f4ede0;
-  background-image: radial-gradient(#f4ede0 0%, #e8dfcc 100%);
   border: 1px solid #d3c4a8;
   border-radius: 8px;
   padding: 25px;
@@ -178,12 +189,10 @@ body {
 #personal-skills {
   text-align: center;
   min-height: 80px;
+  font-family: "MedievalSharp", cursive;
+  line-height: 20px;
 }
 
-#personal-skills {
-  text-align: center;
-  min-height: 80px;
-}
 #personal-skills ul {
   list-style: none;
   padding: 0;
@@ -324,6 +333,11 @@ body {
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
   transform: translateY(-2px);
 }
+.active {
+  color: #d4af37;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+  transform: translateY(-2px);
+}
 
 .nav-divider {
   width: 1px;
@@ -412,6 +426,7 @@ body {
   align-items: center;
   flex-direction: column;
   text-decoration: none;
+  margin: 30px;
 }
 
 .empty-list-container a {
@@ -481,6 +496,7 @@ body {
 
 /* Main container */
 .student-detail-container {
+  font-family: "MedievalSharp", cursive;
   background: #f4ede0;
   background-image: radial-gradient(#f4ede0 0%, #e8dfcc 100%);
   border: 1px solid #d3c4a8;
@@ -505,7 +521,6 @@ body {
 /* Title */
 .student-detail-container h1 {
   text-align: center;
-  font-family: "MedievalSharp", cursive;
   color: #2c241e;
   font-size: 2.2rem;
   margin-bottom: 20px;
@@ -820,10 +835,10 @@ footer a:hover {
   width: 100%;
   max-width: 800px;
   padding: 12px 20px;
-  background-color: #f4ede0; 
+  background-color: #f4ede0;
   border: 2px solid #372e29;
   border-radius: 5px;
-  font-family: 'MedievalSharp', cursive;
+  font-family: "MedievalSharp", cursive;
   font-size: 1.1rem;
   color: #2a2118;
   outline: none;
@@ -843,13 +858,97 @@ footer a:hover {
   font-style: italic;
 }
 
+/*HOUSES PAGE*/
 
-/*RESPONSIVE*/
-/* @media (min-width: 1400px) {
-  main {
-    max-width: 1320px;
-  }
-} */
+.houses-title {
+  font-family: "MedievalSharp", cursive;
+  text-align: center;
+  margin: 15px 0;
+  color: #d4af37;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.houses-stats-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: "MedievalSharp", cursive;
+}
+
+.house-stat-card {
+  background-color: #f4ede0;
+  border: 2px solid #372e29;
+  padding: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+  min-width: 120px;
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.house-stat-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+  cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADmklEQVR4AbyXa0iTexzHf246dVOX6NJSj55Uwo5ChzjGuXROxikXpF3sRdOCii5EBVpQEFFQEL2KCnwTdMOKblZmlF2spZkOxNHKLVyatU0lW2vTtrXt2dP3HxTdc/o8g+/Xy+/74vNhF8YkUmnEXSLah0agYY+E43jjrxmqKpCr0bBLSADd0GsdrM1KS1qHvw+hUjRsYQIcz1NFr81+Jy87dZVUIjkOetgkmAB49BY/FvZaXupTVQkVkKjB/zJU9HwQYCCnxxdQD7/xPJk7Y4oGh3Oo6BKfCoBHL5zDb4uvNncO/PX7pFJZpJRJyNkgVr8UYJyeYJAvtvS/cmpKC0ujoyLrcRRN4lsC4JHBMvC6tP3hc++SeX/MwoFJxOG34PmeAAM1dZptmpOXdZwGEvJY2S0claig+ZEAA10KcMG15m4bv3W1enq8IuY6joJK/EwAPDrcburb3qDVU/qExOkx0VHNOKpQQTISAQba02qwHEgep6CNy4oKxinljTgKIjFSAfCo6n5HzymP109z/8krwKEFTUPHlFAEeC4YXHHodFPDHV0X7a5amJuSnKAFfUwSoQiART5fgCt77fLobNY+SJTlpCQlsEcim42jaagCjOH2+gIlNfUdpk7jE8pMT878JS2JPRKjkhiNAJMYfOP1zzl4qtm6Zuksarm0M31y9kT27shnYygdrQBjWPExXlx97KY9ThFLt89smzB1SuZtDCFJjEUALDLqO5/NW7BynztRqaBrJ7ao4hQxTKKQjSPpWAUYo+1um6msYmO1b/Ouk6T+N1+Vm5VyA8OIJIQQAIsaLja0r9LeM/AF2cm0fulM5eRJqUziPzb+qEIJMEZN38vhTfWND2jwhZ3WVxQpczLHX8VQhH43QgowyP52U/9ebZuJHA4HVS7/X/5bbtoVDGr0mxFagEG2tRhsR5p0j8njdtOy+YXyaflZdRhK0K8ihgAPyhptx7M6besj4gJ+Wlc+UzY1L+M87ovQzyKGAANw+MJTfqPtaXPHAzO5XENUuWKO7O9pOWcxatCPEUuAAdz+AFdyrbXnod5gJqfThafjT2lGasJRjBPR9xFTgAGcbq+/uE77+Kne0EVGUxdFR0mjI6URpzGypyNCbAFwqN/l9s2ubTR1X2g0UpIylsrV+TMS42NqMRaGQwAc6h5y+/IG7MOXM8bHU6vBGnQMeSsx6EQXAORD8JLgd9Q1me1mi2MxjgdQegcAAP//UZdUQgAAAAZJREFUAwAJrDzHbfuuDAAAAABJRU5ErkJggg=="),
+    auto;
+}
+
+.house-stat-card.active {
+  border-color: #d4af37;
+  transform: scale(1.05);
+}
+
+.house-crest-img {
+  width: 100px;
+}
+
+.house-description-box {
+  background-color: #f4ede0;
+  border: 2px solid #372e29;
+  padding: 20px;
+  margin: 20px auto 40px;
+  max-width: 900px;
+  text-align: center;
+  box-shadow: 4px 4px 0px #d4af37;
+  animation: fadeIn 0.5s ease;
+}
+
+.house-text {
+  font-family: "MedievalSharp", cursive;
+  text-wrap: balance;
+  font-style: italic;
+  color: #372e29;
+  line-height: 1.6;
+  font-size: 1.5em;
+}
+
+.select-prompt {
+  font-size: 1.5em;
+  text-align: center;
+  height: 20px;
+  font-family: "MedievalSharp", cursive;
+  color: #a69a80;
+  align-items: center;
+}
+
+.houses-page-context .favorite-btn {
+  display: none;
+}
+
+.house-description-box.gryffindor {
+  border-left: 10px solid #740001;
+}
+.house-description-box.slytherin {
+  border-left: 10px solid #1a472a;
+}
+.house-description-box.ravenclaw {
+  border-left: 10px solid #0e1a40;
+}
+.house-description-box.hufflepuff {
+  border-left: 10px solid #ecb939;
+}
 
 @media (max-width: 991px) {
   .hp-navbar {
@@ -873,13 +972,6 @@ footer a:hover {
   .hp-footer {
     height: auto;
     padding: 10px 0 20px;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    height: auto;
-    gap: 10px;
-    align-items: center;
   }
 
   .footer-container * {
@@ -914,6 +1006,12 @@ footer a:hover {
     font-size: 15px;
   }
 
+  .footer-container {
+    flex-direction: column;
+    height: auto;
+    gap: 10px;
+    align-items: center;
+  }
   .students-list {
     grid-template-columns: 1fr;
   }

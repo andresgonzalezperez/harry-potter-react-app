@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Search from "./components/Search";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AddStudentPage from "./pages/AddStudentPage";
@@ -10,6 +9,7 @@ import NotFoundPage from "./pages/NotfoundPage";
 import StudentsDetailsPage from "./pages/StudentsDetailsPage";
 import EditStudentPage from "./pages/EditStudentPage";
 import Footer from "./components/Footer"
+import HousesPage from "./pages/HousesPage";
 
 function App() {
 
@@ -53,6 +53,7 @@ function App() {
           <Route path="students/:studentId" element={<StudentsDetailsPage />} />
           <Route path="/students/:studentId/edit" element={<EditStudentPage />} />
           <Route path="/students/add" element={<AddStudentPage/>} />
+          <Route path="/houses" element={<HousesPage/>}/>
 
         </Routes>
       </main>

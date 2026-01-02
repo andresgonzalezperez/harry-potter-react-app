@@ -1,4 +1,3 @@
-import Search from '../components/Search';
 import StudentsList from '../components/StudentsList';
 
 function HomePage({ students, favorites, toggleFavorite }) {

@@ -43,6 +43,28 @@ function StudentsList({ favorites = [], onToggleFavorite }) {
           onChange={(e) => setSearch(e.target.value)}
         />
       </section>
+
+      {totalPages > 1 && (
+        <div className="pagination">
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            ⬅
+          </button>
+
+          <span>
+            {currentPage} / {totalPages}
+          </span>
+
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+            disabled={currentPage === totalPages}
+          >
+            ➡
+          </button>
+        </div>
+      )}
       
 
       <div className="students-list">

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import hogwartsCrest from "../assets/images/hogwarts-crest.png";
 
 function Navbar() {
@@ -6,32 +6,32 @@ function Navbar() {
     <nav className="hp-navbar">
       <div className="nav-container">
         <section className="nav-side">
-          <Link to="/" className="nav-item">
+          <NavLink to="/" className="nav-item">
             Home
-          </Link>
+          </NavLink>
           <div className="nav-divider"></div>
-          <Link to="/students/add" className="nav-item">
+          <NavLink to="/students/add" className="nav-item">
             Add <br />
             Student
-          </Link>
+          </NavLink>
         </section>
 
         <section className="nav-logo">
           <article className="logo-inner">
-            <Link to="/" className="nav-item">
+            <NavLink to="/" className="nav-item">
               <img src={hogwartsCrest} alt="hogwartsCrest" />
-            </Link>
+            </NavLink>
           </article>
         </section>
 
         <section className="nav-side">
-          <Link to="/houses" className="nav-item">
+          <NavLink to="/houses" className="nav-item">
             Houses
-          </Link>
+          </NavLink>
           <div className="nav-divider"></div>
-          <Link to="/favorites" className="nav-item">
+          <NavLink to="/favorites" className="nav-item">
             Favorites
-          </Link>
+          </NavLink>
         </section>
       </div>
       <div className="nav-glow-line"></div>
