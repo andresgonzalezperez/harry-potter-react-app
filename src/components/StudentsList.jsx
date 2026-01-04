@@ -1,7 +1,7 @@
 import axios from "axios";
 import StudentCard from "./StudentCard";
 import { useEffect, useState } from "react";
-const itensPerPage = 8;
+const itensPerPage = 10;
 
 function StudentsList({ favorites = [], onToggleFavorite }) {
   const [students, setStudents] = useState([]);

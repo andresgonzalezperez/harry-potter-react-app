@@ -20,7 +20,9 @@ function StudentsDetailsPage() {
   // Delete student
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5005/students/${studentId}`);
+      const shouldDelete = window.confirm("Delete this student?");
+      if (!shouldDelete) return;
+        await axios.delete(`http://localhost:5005/students/${studentId}`);
       navigate("/"); // Go back to the list
     } catch (err) {
       console.log(err);
@@ -63,19 +65,20 @@ function StudentsDetailsPage() {
         <h2>Comments</h2>
         <p className="student-comments">{student.comments}</p>
 
-        <Link to="/" className="btn-back-home">
-          Back
+        <Link to="/">
+          <button className="btn-back-home">Back</button>
         </Link>
 
-        <p
+        <button
           className="btn-edit-student"
-          onClick={() => navigate(`/students/${studentId}/edit`)}>
+          onClick={() => navigate(`/students/${studentId}/edit`)}
+        >
           Edit Student
-        </p>
+        </button>
 
-        <p className="btn-delete-student" onClick={handleDelete}>
+        <button className="btn-delete-student" onClick={handleDelete}>
           Delete Student
-        </p>
+        </button>
       </section>
     </div>
   );

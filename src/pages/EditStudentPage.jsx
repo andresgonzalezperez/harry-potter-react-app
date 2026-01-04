@@ -44,15 +44,11 @@ function StudentsEditPage() {
     }));
   };
 
-  const handleSubmit = 
-  async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.put(
-        `http://localhost:5005/students/${studentId}`,
-        student
-      );
+      await axios.put(`http://localhost:5005/students/${studentId}`, student);
       navigate(`/students/${studentId}`);
     } catch (err) {
       console.log(err);
@@ -65,7 +61,6 @@ function StudentsEditPage() {
         <h1>Edit Student</h1>
 
         <form onSubmit={handleSubmit} className="form">
-
           <label>Name:</label>
           <input
             type="text"
@@ -73,79 +68,74 @@ function StudentsEditPage() {
             value={student.name}
             onChange={handleChange}
           />
+          <section className="new-student-info">
+            <label>Age:</label>
+            <input
+              style={{ width: "50px" }}
+              type="number"
+              name="age"
+              value={student.age}
+              onChange={handleChange}
+            />
 
-          <label>Age:</label>
-          <input
-            type="number"
-            name="age"
-            value={student.age}
-            onChange={handleChange}
-          />
+            <label>Sex:</label>
+            <select name="sex" value={student.sex} onChange={handleChange}>
+              <option value="">Select sex</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
 
-          <label>Sex:</label>
-          <select
-            name="sex"
-            value={student.sex}
-            onChange={handleChange}
-          >
-            <option value="">Select sex</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
+            <label>House:</label>
+            <select name="house" value={student.house} onChange={handleChange}>
+              <option value="">Select House</option>
+              <option value="Gryffindor">Gryffindor</option>
+              <option value="Slytherin">Slytherin</option>
+              <option value="Hufflepuff">Hufflepuff</option>
+              <option value="Ravenclaw">Ravenclaw</option>
+            </select>
 
-          <label>House:</label>
-          <select
-            name="house"
-            value={student.house}
-            onChange={handleChange}
-          >
-            <option value="">Select House</option>
-            <option value="Gryffindor">Gryffindor</option>
-            <option value="Slytherin">Slytherin</option>
-            <option value="Hufflepuff">Hufflepuff</option>
-            <option value="Ravenclaw">Ravenclaw</option>
-          </select>
-
-          <label>Image URL:</label>
-          <input
-            type="text"
-            name="image"
-            value={student.image}
-            onChange={handleChange}
-          />
+            <label>Image URL:</label>
+            <input
+              type="text"
+              name="image"
+              value={student.image}
+              onChange={handleChange}
+            />
+          </section>
 
           <h2>Personal Skills</h2>
-          {student.personalSkills?.map((skill, index) => (
-            <input
-              key={index}
-              type="text"
-              value={skill}
-              onChange={(e) => handleSkillChange(index, e.target.value)}
-            />
-          ))}
+          <section className="personal-skills">
+            {student.personalSkills?.map((skill, index) => (
+              <input
+                key={index}
+                type="text"
+                value={skill}
+                onChange={(e) => handleSkillChange(index, e.target.value)}
+              />
+            ))}
+          </section>
 
           <h2>Academic Grades</h2>
-          {student.academicGrades &&
-            Object.entries(student.academicGrades).map(([subject, grade]) => (
-              <div key={subject}>
-                <label>{subject}:</label>
-                <input
-                  type="text"
-                  value={grade}
-                  onChange={(e) =>
-                    handleGradeChange(subject, e.target.value)
-                  }
-                />
-              </div>
-            ))}
-
+          <section className="academic-grades-input">
+            {student.academicGrades &&
+              Object.entries(student.academicGrades).map(([subject, grade]) => (
+                <div key={subject}>
+                  <label>{subject}:</label>
+                  <input
+                    type="text"
+                    value={grade}
+                    onChange={(e) => handleGradeChange(subject, e.target.value)}
+                  />
+                </div>
+              ))}
+          </section>
           <label>Comments:</label>
           <textarea
             name="comments"
             value={student.comments}
             onChange={handleChange}
           />
-        
+
           <button type="submit" className="save-changes-btn">
             Save Changes
           </button>
