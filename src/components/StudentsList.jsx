@@ -1,10 +1,10 @@
 import axios from "axios";
 import StudentCard from "./StudentCard";
 import { useEffect, useState } from "react";
-const itensPerPage = 10;
 
 function StudentsList({ favorites = [], onToggleFavorite }) {
   const [students, setStudents] = useState([]);
+  const [itemsPerPage, setitemsPerPage] = useState(10);
 
   //search
   const [search, setSearch] = useState("");
@@ -27,9 +27,9 @@ function StudentsList({ favorites = [], onToggleFavorite }) {
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const startIndex = (currentPage - 1) * itensPerPage;
-  const endIndex = startIndex + itensPerPage;
-  const totalPages = Math.ceil(filteredStudents.length / itensPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const totalPages = Math.ceil(filteredStudents.length / itemsPerPage);
   const studentsToShow = filteredStudents.slice(startIndex, endIndex);
 
   return (
@@ -44,28 +44,46 @@ function StudentsList({ favorites = [], onToggleFavorite }) {
         />
       </section>
 
-      {totalPages > 1 && (
-        <div className="pagination">
-          <button
-            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-            disabled={currentPage === 1}
-          >
-            ⬅
-          </button>
+      <div className="top-pagination">
+       
+          {totalPages > 1 && (
+            <div className="pagination">
+              <button
+                onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                disabled={currentPage === 1}
+              >
+                ⬅
+              </button>
 
-          <span>
-            {currentPage} / {totalPages}
-          </span>
+              <span>
+                {currentPage} / {totalPages}
+              </span>
 
-          <button
-            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-            disabled={currentPage === totalPages}
+              <button
+                onClick={() =>
+                  setCurrentPage((p) => Math.min(p + 1, totalPages))
+                }
+                disabled={currentPage === totalPages}
+              >
+                ➡
+              </button>
+            </div>
+          )}
+    
+
+        <section className="items-pp">
+          <label htmlFor="items per page"> Items per page:</label>
+          <select
+            name="items per page"
+            id=""
+            onChange={(e) => setitemsPerPage(e.target.value)}
           >
-            ➡
-          </button>
-        </div>
-      )}
-      
+            <option value="10">10</option>
+            <option value="6">6</option>
+            <option value="8">8</option>
+          </select>
+        </section>
+      </div>
 
       <div className="students-list">
         {studentsToShow.map((student) => (
@@ -77,13 +95,15 @@ function StudentsList({ favorites = [], onToggleFavorite }) {
           />
         ))}
       </div>
+      
+        <section className="bottom-pagination">
 
       {totalPages > 1 && (
         <div className="pagination">
           <button
             onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
             disabled={currentPage === 1}
-          >
+            >
             ⬅
           </button>
 
@@ -94,11 +114,12 @@ function StudentsList({ favorites = [], onToggleFavorite }) {
           <button
             onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
             disabled={currentPage === totalPages}
-          >
+            >
             ➡
           </button>
         </div>
       )}
+      </section>
     </>
   );
 }
