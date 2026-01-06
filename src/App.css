@@ -564,6 +564,11 @@ option {
   align-items: center;
   justify-content: space-between;
 }
+
+.new-student-info select{
+margin: 0 7px;
+}
+
 .personal-skills {
   display: flex;
   align-items: center;
@@ -1073,6 +1078,14 @@ footer a:hover {
   .footer-container * {
     text-align: center;
   }
+
+  .new-student-info,
+  .personal-skills,
+  .academic-grades-input {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1098,14 +1111,6 @@ footer a:hover {
 
   .student-detail-container {
     padding: 20px;
-  }
-
-  .new-student-info,
-  .personal-skills,
-  .academic-grades-input {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
   }
 
   .personal-skills input {

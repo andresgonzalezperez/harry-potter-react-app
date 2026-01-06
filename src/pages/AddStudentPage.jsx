@@ -21,6 +21,9 @@ function AddStudentPage() {
     image: "",
   });
 
+  // Cloudinary image file state 
+  const [imageFile, setImageFile] = useState(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setStudent((prev) => ({ ...prev, [name]: value }));
@@ -39,10 +42,37 @@ function AddStudentPage() {
     }));
   };
 
+
+  const uploadImageToCloudinary = async () => {
+  const data = new FormData();
+  data.append("file", imageFile);
+  data.append("upload_preset", "Image_HarryPotter_React_App");
+  data.append("cloud_name", "djziuzbnz");
+
+  const response = await axios.post(
+    "https://api.cloudinary.com/v1_1/djziuzbnz/image/upload",
+    data
+  );
+
+  return response.data.secure_url;
+};
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post("http://localhost:5005/students", student);
+    try { 
+      let imageUrl = student.image;
+      if (imageFile) { 
+        imageUrl = await uploadImageToCloudinary(); }
+
+        const studentToSend = { 
+          ...student, 
+          image: imageUrl, 
+        };
+
+        await axios.post("http://localhost:5005/students", studentToSend);
+
+        setMessage("Student added.");
       setTimeout(() => {
         navigate("/");
       }, 2000);
@@ -69,24 +99,24 @@ function AddStudentPage() {
           />
 
           <section className="new-student-info">
-            <label>Age:</label>
+            <label>Age:
             <input
-              style={{ width: "50px" }}
+              style={{ width: "90px" }}
               type="number"
               name="age"
               value={student.age}
               onChange={handleChange}
               min={12}
             />
-
-            <label>Sex:</label>
+            </label>
+            <label>Sex:
             <select name="sex" value={student.sex} onChange={handleChange}>
               <option value="">-- None --</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
-
-            <label>House:</label>
+            </label>
+            <label>House:
             <select name="house" value={student.house} onChange={handleChange}>
               <option value="">-- None --</option>
               <option value="Gryffindor">Gryffindor</option>
@@ -94,16 +124,25 @@ function AddStudentPage() {
               <option value="Hufflepuff">Hufflepuff</option>
               <option value="Ravenclaw">Ravenclaw</option>
             </select>
-
-            <label>Image URL: </label>
+            </label>
+            <label>
             <input
-              type="text"
-              name="image"
-              value={student.image}
-              onChange={handleChange}
+              type="file"
+              id="imageUpload" 
+              style={{ display: "none" }}
+              onChange={(e) => setImageFile(e.target.files[0])}
             />
+            <button
+              type="button"
+              className="btn-delete-student"
+              onClick={() => document.getElementById("imageUpload").click()}
+            >
+             Upload Image 
+            </button>
+            
+            {imageFile && <p className="file-name">{imageFile.name}</p>}
+            </label>
           </section>
-
           <h2>Personal Skills</h2>
           <section className="personal-skills">
           {student.personalSkills.map((skill, index) => (

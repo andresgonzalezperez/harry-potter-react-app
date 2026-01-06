@@ -5,6 +5,7 @@ import axios from "axios";
 function StudentsEditPage() {
   const { studentId } = useParams();
   const navigate = useNavigate();
+  const [message, setMessage] = useState("");
 
   const [student, setStudent] = useState({
     name: "",
@@ -16,6 +17,8 @@ function StudentsEditPage() {
     comments: "",
     image: "",
   });
+
+  const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
     axios
@@ -44,15 +47,48 @@ function StudentsEditPage() {
     }));
   };
 
+  const uploadImageToCloudinary = async () => {
+    const data = new FormData();
+    data.append("file", imageFile);
+    data.append("upload_preset", "Image_HarryPotter_React_App");
+    data.append("cloud_name", "djziuzbnz");
+
+    const response = await axios.post(
+      "https://api.cloudinary.com/v1_1/djziuzbnz/image/upload",
+      data
+    );
+
+    return response.data.secure_url;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:5005/students/${studentId}`, student);
+      let imageUrl = student.image;
+      if (imageFile) {
+        imageUrl = await uploadImageToCloudinary();
+      }
+
+      const studentToSend = {
+        ...student,
+        image: imageUrl,
+      };
+
+      await axios.put(
+        `http://localhost:5005/students/${studentId}`,
+        studentToSend
+      );
+
+      setMessage("Student updated.");
+
       navigate(`/students/${studentId}`);
     } catch (err) {
       console.log(err);
+    } finally {
+      setMessage("Student updated.");
     }
+    setTimeout(() => setMessage(""), 2000);
   };
 
   return (
@@ -69,38 +105,65 @@ function StudentsEditPage() {
             onChange={handleChange}
           />
           <section className="new-student-info">
-            <label>Age:</label>
-            <input
-              style={{ width: "50px" }}
-              type="number"
-              name="age"
-              value={student.age}
-              onChange={handleChange}
-            />
+            <label>
+              Age:
+              <input
+                style={{ width: "50px" }}
+                type="number"
+                name="age"
+                value={student.age}
+                onChange={handleChange}
+              />
+            </label>
 
-            <label>Sex:</label>
-            <select name="sex" value={student.sex} onChange={handleChange}>
-              <option value="">Select sex</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </select>
+            <label>
+              Sex:
+              <select name="sex" value={student.sex} onChange={handleChange}>
+                <option value="">Select sex</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </label>
 
-            <label>House:</label>
-            <select name="house" value={student.house} onChange={handleChange}>
-              <option value="">Select House</option>
-              <option value="Gryffindor">Gryffindor</option>
-              <option value="Slytherin">Slytherin</option>
-              <option value="Hufflepuff">Hufflepuff</option>
-              <option value="Ravenclaw">Ravenclaw</option>
-            </select>
+            <label>
+              House:
+              <select
+                name="house"
+                value={student.house}
+                onChange={handleChange}
+              >
+                <option value="">Select House</option>
+                <option value="Gryffindor">Gryffindor</option>
+                <option value="Slytherin">Slytherin</option>
+                <option value="Hufflepuff">Hufflepuff</option>
+                <option value="Ravenclaw">Ravenclaw</option>
+              </select>
+            </label>
 
-            <label>Image URL:</label>
-            <input
-              type="text"
-              name="image"
-              value={student.image}
-              onChange={handleChange}
-            />
+            <label>
+              <input
+                type="file"
+                id="imageUpload"
+                style={{ display: "none" }}
+                onChange={(e) => setImageFile(e.target.files[0])}
+              />
+              <button
+                type="button"
+                className="btn-delete-student"
+                onClick={() => document.getElementById("imageUpload").click()}
+              >
+                Update Image
+              </button>
+
+              {/* Show current image name if no new file selected */}
+              {student.image && !imageFile && (
+                <p className="current-image-name">
+                  {student.image.split("/").pop()}
+                </p>
+              )}
+
+              {imageFile && <p className="file-name">{imageFile.name}</p>}
+            </label>
           </section>
 
           <h2>Personal Skills</h2>
