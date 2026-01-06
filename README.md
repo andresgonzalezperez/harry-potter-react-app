@@ -121,9 +121,4 @@ A React application that allows users to explore, create, edit, and manage Hogwa
 
 ### Slides
 
-<<<<<<< HEAD
 - **[Slides Link](https://docs.google.com/presentation/d/1Q152KJEBJFLgt8mSBIRlM28W10GCHa_aWYfqEaRZ1R0/edit?usp=sharing)**
-=======
-- **[Slides Link](https://docs.google.com/presentation/d/1Q152KJEBJFLgt8mSBIRlM28W10GCHa_aWYfqEaRZ1R0/edit?usp=sharing)**
-
->>>>>>> 265abc54655b79908cc7cd996a040acf07ce83a4
