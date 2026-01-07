@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../config/config";
 
 function AddStudentPage() {
   const navigate = useNavigate();

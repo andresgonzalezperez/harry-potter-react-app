@@ -1,6 +1,7 @@
 import axios from "axios";
 import StudentCard from "./StudentCard";
 import { useEffect, useState } from "react";
+import { API_URL } from "../config/config";
 
 function StudentsList({ favorites = [], onToggleFavorite }) {
   const [students, setStudents] = useState([]);
@@ -16,7 +17,7 @@ function StudentsList({ favorites = [], onToggleFavorite }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5005/students")
+      .get(`${API_URL}/students`)
       .then(({ data }) => {
         console.log("Students Data:", data);
         setStudents(data || []);
