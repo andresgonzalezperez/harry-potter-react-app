@@ -5,6 +5,7 @@ import hufflepuffCrest from "../assets/images/hufflepuff-crest.png";
 import ravenclawCrest from "../assets/images/ravenclaw-crest.png";
 import StudentCard from "../components/StudentCard";
 import { Link } from "react-router-dom";
+import { API_URL } from "../config/config";
 
 function HousesPage() {
   const [students, setStudents] = useState([]);
@@ -29,7 +30,7 @@ function HousesPage() {
   ];
 
   useEffect(() => {
-    fetch("http://localhost:5005/students")
+    fetch(`${API_URL}/students`)
       .then((res) => res.json())
       .then((data) => setStudents(data))
       .catch((err) => console.error(err));

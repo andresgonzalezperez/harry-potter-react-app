@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../config/config";
 
 function StudentsDetailsPage() {
   const [student, setStudent] = useState({});
@@ -9,7 +10,7 @@ function StudentsDetailsPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/students/${studentId}`)
+      .get(`${API_URL}/students/${studentId}`)
       .then(({ data }) => {
         console.log(data);
         setStudent(data);
@@ -22,7 +23,7 @@ function StudentsDetailsPage() {
     try {
       const shouldDelete = window.confirm("Delete this student?");
       if (!shouldDelete) return;
-        await axios.delete(`http://localhost:5005/students/${studentId}`);
+        await axios.delete(`${API_URL}/students/${studentId}`);
       navigate("/"); // Go back to the list
     } catch (err) {
       console.log(err);

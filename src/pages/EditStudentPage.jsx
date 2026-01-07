@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../config/config";
 
 function StudentsEditPage() {
   const { studentId } = useParams();
@@ -22,7 +23,7 @@ function StudentsEditPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/students/${studentId}`)
+      .get(`${API_URL}/students/${studentId}`)
       .then(({ data }) => {
         setStudent(data);
       })
@@ -76,7 +77,7 @@ function StudentsEditPage() {
       };
 
       await axios.put(
-        `http://localhost:5005/students/${studentId}`,
+        `${API_URL}/students/${studentId}`,
         studentToSend
       );
 

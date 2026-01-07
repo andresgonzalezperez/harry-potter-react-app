@@ -70,7 +70,7 @@ function AddStudentPage() {
           image: imageUrl, 
         };
 
-        await axios.post("http://localhost:5005/students", studentToSend);
+        await axios.post(`${API_URL}/students`, studentToSend);
 
         setMessage("Student added.");
       setTimeout(() => {
