@@ -1,7 +1,7 @@
 # HARRY POTTER STUDENTS APP
 
 ### See the App!
-_(Add deployed link here)_
+**[Deploy Link](https://harry-potter-react-app.netlify.app/)**
 
 ### App Logo
 <img src="./src/assets/images/hogwarts-crest.png" alt="Hogwarts Crest" width="150" />
@@ -117,7 +117,7 @@ A React application that allows users to explore, create, edit, and manage Hogwa
 ### Project
 - **[Repository Link](https://github.com/andresgonzalezperez/harry-potter-react-app)**
 - **[Database repository link](https://github.com/andresgonzalezperez/json-server-backend)**
-- **Deploy Link:** (add it here)
+- **[Deploy Link](https://harry-potter-react-app.netlify.app/)**
 
 ### Slides
 
