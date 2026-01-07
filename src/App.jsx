@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AddStudentPage from "./pages/AddStudentPage";
 import FavoritesPage from "./pages/FavoritesPage";
-import NotFoundPage from "./pages/NotfoundPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import StudentsDetailsPage from "./pages/StudentsDetailsPage";
 import EditStudentPage from "./pages/EditStudentPage";
 import Footer from "./components/Footer"
