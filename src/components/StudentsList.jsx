@@ -2,7 +2,7 @@ import axios from "axios";
 import StudentCard from "./StudentCard";
 import { useEffect, useState } from "react";
 import { API_URL } from "../config/config";
-import CircleLoader from "react-spinners/CircleLoader"; /*loading staff*/
+import CircleLoader from "react-spinners/CircleLoader"; /*loading*/
 
 function StudentsList({ favorites = [], onToggleFavorite }) {
   const [students, setStudents] = useState([]);
