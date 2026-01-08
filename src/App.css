@@ -1096,6 +1096,7 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
+
   .students-list {
     gap: 16px;
     padding: 16px 0;
@@ -1145,6 +1146,9 @@ footer a:hover {
 @media (max-width: 576px) {
   html {
     font-size: 15px;
+  }
+    .seach-bar-input {
+    width: 70%;
   }
 
   .footer-container {

@@ -7,13 +7,13 @@ import FavoriteButton from "./FavoriteButton";
 
 const gradeMap = {
   "A+": 20,
-  A: 19,
+  "A": 19,
   "A-": 18,
   "B+": 17,
-  B: 16,
+  "B": 16,
   "B-": 15,
   "C+": 14,
-  C: 13,
+  "C": 13,
 };
 
 function calculateAverageLetter(academicGrades) {
