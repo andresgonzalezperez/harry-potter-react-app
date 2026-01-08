@@ -1041,6 +1041,23 @@ footer a:hover {
   border-left: 10px solid #ecb939;
 }
 
+/*loading */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 1rem;
+}
+
+.loading-container p {
+  color: #ecb939;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+  font-size: 1.5em;
+}
+
 @media (max-width: 991px) {
   .hp-navbar {
     height: auto;

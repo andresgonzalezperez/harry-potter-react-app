@@ -2,10 +2,13 @@ import axios from "axios";
 import StudentCard from "./StudentCard";
 import { useEffect, useState } from "react";
 import { API_URL } from "../config/config";
+import CircleLoader from "react-spinners/CircleLoader"; /*loading staff*/
 
 function StudentsList({ favorites = [], onToggleFavorite }) {
   const [students, setStudents] = useState([]);
   const [itemsPerPage, setitemsPerPage] = useState(10);
+  const [loading, setLoading] = useState(true); /*loading */
+  const [currentPage, setCurrentPage] = useState(1);
 
   //search
   const [search, setSearch] = useState("");
@@ -16,18 +19,37 @@ function StudentsList({ favorites = [], onToggleFavorite }) {
   );
 
   useEffect(() => {
+    setLoading(true); /*loading */
     axios
       .get(`${API_URL}/students`)
       .then(({ data }) => {
         console.log("Students Data:", data);
         setStudents(data || []);
+        setLoading(false); /*loading */
       })
       .catch((error) => {
         console.error("Error fetching students data:", error);
+      })
+      .finally(() => {
+        setLoading(false); /*loading */
       });
   }, []);
 
-  const [currentPage, setCurrentPage] = useState(1);
+    /*loading */
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <CircleLoader 
+          color="#ecb939"
+          loading={loading}
+          size={100}
+          aria-label="Loading Students"
+        />
+        <p>Loading Students...</p>
+      </div>
+    );
+  }
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const totalPages = Math.ceil(filteredStudents.length / itemsPerPage);
@@ -46,31 +68,27 @@ function StudentsList({ favorites = [], onToggleFavorite }) {
       </section>
 
       <div className="top-pagination">
-       
-          {totalPages > 1 && (
-            <div className="pagination">
-              <button
-                onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                disabled={currentPage === 1}
-              >
-                ⬅
-              </button>
+        {totalPages > 1 && (
+          <div className="pagination">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              ⬅
+            </button>
 
-              <span>
-                {currentPage} / {totalPages}
-              </span>
+            <span>
+              {currentPage} / {totalPages}
+            </span>
 
-              <button
-                onClick={() =>
-                  setCurrentPage((p) => Math.min(p + 1, totalPages))
-                }
-                disabled={currentPage === totalPages}
-              >
-                ➡
-              </button>
-            </div>
-          )}
-    
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+              disabled={currentPage === totalPages}
+            >
+              ➡
+            </button>
+          </div>
+        )}
 
         <section className="items-pp">
           <label htmlFor="items per page"> Cards per page:</label>
@@ -97,30 +115,29 @@ function StudentsList({ favorites = [], onToggleFavorite }) {
           />
         ))}
       </div>
-      
-        <section className="bottom-pagination">
 
-      {totalPages > 1 && (
-        <div className="pagination">
-          <button
-            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-            disabled={currentPage === 1}
+      <section className="bottom-pagination">
+        {totalPages > 1 && (
+          <div className="pagination">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              disabled={currentPage === 1}
             >
-            ⬅
-          </button>
+              ⬅
+            </button>
 
-          <span>
-            {currentPage} / {totalPages}
-          </span>
+            <span>
+              {currentPage} / {totalPages}
+            </span>
 
-          <button
-            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-            disabled={currentPage === totalPages}
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+              disabled={currentPage === totalPages}
             >
-            ➡
-          </button>
-        </div>
-      )}
+              ➡
+            </button>
+          </div>
+        )}
       </section>
     </>
   );
